@@ -7,14 +7,14 @@ not_admitted = []
 
 def check_admission(name, department, jamb_score, credits, interview_passed):
     if department.lower() == "computer science":
-        if jamb_score >= 250 and credits >= 5 and interview_passed:
+        if jamb_score >= 250 and credits >= 5 and interview_passed.lower() == "yes":
             admitted.append(name)
             return f"{name} has been admitted into Computer Science."
         else:
             not_admitted.append(name)
             return f"{name} was not admitted into Computer Science."
     elif department.lower() == "mass communication":
-        if jamb_score >= 230 and credits >= 5 and interview_passed:
+        if jamb_score >= 230 and credits >= 5 and interview_passed.lower() == "yes":
             admitted.append(name)
             return f"{name} has been admitted into Mass Communication."
         else:
@@ -36,7 +36,7 @@ def submit():
             "Invalid input", "Please enter valid numbers for JAMB score and credits.")
         return
 
-    interview_passed = interview_var.get()
+    interview_passed = interview_entry.get().strip()
     result = check_admission(
         name, department, jamb_score, credits, interview_passed)
     messagebox.showinfo("Result", result)
@@ -63,8 +63,8 @@ credit_entry = tk.Entry(root)
 credit_entry.pack()
 
 tk.Label(root, text="Did the candidate pass the interview?").pack()
-interview_var = tk.BooleanVar()
-tk.Checkbutton(root, text="Yes", variable=interview_var).pack()
+interview_entry = tk.Entry(root)
+interview_entry.pack()
 
 tk.Button(root, text="Check Admission", command=submit).pack(pady=20)
 

@@ -28,7 +28,7 @@ def show_result():
 
     fee = calculate_delivery_fee(location, weight)
 
-    if fee is not None:
+    if fee != None:
         messagebox.showinfo(
             "Delivery Fee", f"The delivery fee to {location.title()} for {weight}kg is ₦{fee:,}")
     else:
